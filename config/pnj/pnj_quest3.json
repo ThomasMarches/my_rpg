@@ -1,0 +1,40 @@
+{
+    "pnj": {
+        "id": 2,
+        "type": 0,
+        "name": "Hagrid",
+        "quest": 2,
+        "dialog": [
+            {
+                "type": 0,
+                "speaker": 0,
+                "message": " : Okay i will check this, thank you !"
+            },
+            {
+                "type": 0,
+                "speaker": 1,
+                "message": " : Hello, yes i've heard people saw your friend getting into a ship going at (FIGHT 1)"
+            },
+            {
+                "type": 0,
+                "speaker": 0,
+                "message": " : Hello, did you hear anything about the disapear of (MATE) ?"
+            },
+            {
+                "type": 0,
+                "speaker": 1,
+                "message": " : Hello, what can i do for you ?"
+            },
+            {
+                "type": 1,
+                "speaker": 1,
+                "message": " : Congratulations, you've done the quest !"
+            },  
+            {
+                "type": 2,
+                "speaker": 1,
+                "message": " : How is the quest going ?"
+            }
+        ]
+    }
+}

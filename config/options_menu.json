@@ -1,0 +1,89 @@
+{
+    "scene": {
+        "id": 1,
+        "z_index_deepth": 0,
+        "draw_id": 0,
+        "update_id": 0,
+        "events_ids": [
+            [0, 0],
+            [1, 9],
+            [2, 5]
+        ],
+        "background_color": [0, 0, 0, 0],
+        "objects_list": [
+            {
+                "type": 7,
+                "string": "Game options",
+                "font": "templates/font/space.ttf",
+                "pos": [500, 100],
+                "style": 0,
+                "size": 100
+            },
+            {
+                "type": 7,
+                "string": "Resize Window",
+                "font": "templates/font/space.ttf",
+                "pos": [550, 500],
+                "style": 0,
+                "size": 35
+            },
+            {
+                "type": 7,
+                "string": "Global volume",
+                "font": "templates/font/space.ttf",
+                "pos": [550, 375],
+                "style": 0,
+                "size": 35
+            },
+            {
+                "type": 4,
+                "texture_path": "templates/menu/scrollbar_fleur_new.png",
+                "pos": [1010, 375],
+                "box": [1010, 375, 107, 0],
+                "volume_unit": 10,
+                "bar_width": 500
+            },
+            {
+                "type": 5,
+                "texture_path": "templates/menu/bar.png",
+                "pos": [1010, 400],
+                "box": [1000, 400, 500, 10],
+                "volume_unit": 10,
+                "min_volume": 0,
+                "max_volume": 100
+            },
+            {
+                "type": 6,
+                "texture_path": "templates/menu/check.png",
+                "pos": [980, 500],
+                "box": [980, 500, 50, 50],
+                "frame_keys": [
+                    [0, 0, 50, 50],
+                    [50, 0, 50, 50]
+                ]
+            },
+            {
+                "type": 2,
+                "texture_path": "templates/menu/return2.png",
+                "pos": [820, 700],
+                "callback_id": 4,
+                "sound_path": "templates/sounds/ui_change_selection.ogg",
+                "frame_keys": [
+                    [0, 0, 280, 163],
+                    [290, 0, 280, 163],
+                    [570, 0, 280, 163]
+                ]
+            },
+            {
+                "type": 0,
+                "texture_path": "templates/menu/bar_background.png",
+                "pos": [1010, 400]
+            },
+            {
+                "type": 3,
+                "texture_path": "templates/menu/menu_bg_test_with_text.jpg",
+                "pos": [0, 0]
+            }
+        ]
+    }
+}

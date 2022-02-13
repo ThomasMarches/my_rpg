@@ -1,0 +1,19 @@
+{
+    "pnj": {
+        "id": 6,
+        "type": 1,
+        "name": "Jhin",
+        "dialog": [
+            {
+                "type": 0,
+                "speaker": 0,
+                "message": " : I'm Batman !"
+            },
+            {
+                "type": 0,
+                "speaker": 1,
+                "message": " : Hey, who are you ?"
+            }
+        ]
+    }
+}

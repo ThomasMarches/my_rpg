@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">My_RPG</a>
+					<nav id="nav">
+						<a href="../index.html">Home</a>
+						<a href="../documentation.html">How to play</a>
+						<a href="../download.html">Download</a>
+						<a href="../components.html">Components</a>
+						<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+					</nav>
+				</div>
+			</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+				<div class="flex flex-2">
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+								<ul>
+									<li><a href="game_object.html">Game_object</a></li>
+									<li><a href="callback.html">Callback function</a></li>
+									<li><a href="draw.html">Draw function</a></li>
+									<li><a href="update.html">Update function</a></li>
+									<li><a href="extend.html">Extend</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+								<ul>
+									<li><a href="json_value_type.html">json_value_type</a></li>
+									<li><a href="json_value.html">json_value</a></li>
+									<li><a href="json_object.html">json_object</a></li>
+									<li><a href="json_array.html">json_array</a></li>
+									<li><a href="json_constructors.html">Constructors</a></li>
+									<li><a href="get_from_json.html">Get from json function</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+								<ul>
+									<li><a href="scene.html">Scene</a></li>
+									<li><a href="player_spaceship.html">Player Spaceship</a></li>
+									<li><a href="player_village.html">Player_village</a></li>
+									<li><a href="player_fight.html">Player_fight</a></li>
+									<li><a href="shop.html">Shop</a></li>
+									<li><a href="npc.html">NPC</a></li>
+									<li><a href="item.html">Item</a></li>
+									<li><a href="quest.html">Quest</a></li>
+									<li><a href="text_handler.html">Text_handler</a></li>
+									<li><a href="music_handler.html">Music</a></li>
+									<li><a href="cursor_handler.html">Cursor</a></li>
+									<li><a href="ennemy.html">Ennemy</a></li>
+									<li><a href="planet.html">Planet</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+				</div><br>
+				<center>
+					<header>
+						<h2>Json_value_type</h2>
+						<p>On this page, we will explain how works the json_value_type.</p>
+						<hr class="major">
+					</header>
+				</center>
+					<header>
+						<h3>enum json_value_type</h3>
+					</header>
+					<pre><code><font color="green">typedef</font> <font color="red">enum</font> {
+    <font color="orange">NONE</font>,
+    <font color="orange">BOOLEAN</font>,
+    <font color="orange">INT</font>,
+    <font color="orange">STRING</font>,
+    <font color="orange">OBJECT</font>,
+    <font color="orange">ARRAY</font>
+} <font color="red">json_value_type;</font></code></pre>
+					<p>The json_value_type is the type of value you're getting from the json file. Dont use NONE.</p>
+					<hr class="major">
+					<header>
+						<h3>Usage exemple</h3>
+					</header>
+					<p>Here you can see a line that could be inside a json configuration file.</p>
+					<pre><code>"<font color="purple">name</font>": "thomas",</code></pre>
+					<p>the json_value_type for this exemple would be STRING cause the value "thomas" is a string.</p>
+					<pre><code>"<font color="purple">age</font>": 19,</code></pre>
+					<p>the json_value_type for this exemple would be INT cause the value 19 is an int.</p>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

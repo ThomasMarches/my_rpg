@@ -1,0 +1,34 @@
+{
+    "pnj": {
+        "id": 4,
+        "type": 1,
+        "name": "John",
+        "dialog": [
+            {
+                "type": 0,
+                "speaker": 1,
+                "message": " : Have a good day !"
+            },
+            {
+                "type": 0,
+                "speaker": 0,
+                "message": " : Okay, good luck and have a good day !"
+            },
+            {
+                "type": 0,
+                "speaker": 1,
+                "message": " : I'm just gonna pass my day cutting wood and taking the sun !"
+            },
+            {
+                "type": 0,
+                "speaker": 0,
+                "message": " : I'm just going here and there, how about you?"
+            },
+            {
+                "type": 0,
+                "speaker": 1,
+                "message": " : Hey, what you doing ?"
+            }
+        ]
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "quest": {
+        "id": 3,
+        "name": "Money buys everything",
+        "number_of_step": 2,
+        "reward_item": 1,
+        "reward_item_number": 1,
+        "reward_money": 1000,
+        "step_list": [
+            {
+                "type": 0,
+                "validated": 0,
+                "step_number": 2,
+                "description": "Pay Hagrid on Estia (-5330, 4730) to learn more",
+                "scene": 5,
+                "pos": [1000, 3000]
+            },
+            {
+                "type": 1,
+                "validated": 0,
+                "step_number": 1,
+                "description": "Get 100000$ on Olda (-500, 2000)",
+                "scene": 5,
+                "fight_scene": "config/fight_config/fight_quest3.json",
+                "pos": [-500, 2000]
+            }
+        ]
+    }
+}

@@ -1,0 +1,91 @@
+{
+    "scene": {
+        "id": 3,
+        "z_index_deepth": 0,
+        "draw_id": 0,
+        "update_id": 0,
+        "events_ids": [
+            [0, 0],
+            [1, 9]
+        ],
+        "background_color": [0, 0, 0, 0],
+        "objects_list": [
+            {
+                "type": 19,
+                "texture_path": "templates/menu/cursor.png"
+            },
+            {
+                "type": 17,
+                "volume": 100,
+                "loop": 0,
+                "sound_path": "templates/sounds/background_menu.ogg"
+            },
+            {
+                "type": 7,
+                "string": "GG WP",
+                "font": "templates/font/space.ttf",
+                "pos": [400, 100],
+                "style": 0,
+                "size": 100
+            },
+            {
+                "type": 2,
+                "texture_path": "templates/menu/play2.png",
+                "pos": [820, 350],
+                "callback_id": 6,
+                "sound_path": "templates/sounds/ui_change_selection.ogg",
+                "frame_keys": [
+                    [0, 0, 280, 163],
+                    [290, 0, 280, 163],
+                    [570, 0, 280, 163]
+                ]
+            },
+            {
+                "type": 2,
+                "texture_path": "templates/menu/option2.png",
+                "pos": [1570, 800],
+                "callback_id": 1,
+                "sound_path": "templates/sounds/ui_change_selection.ogg",
+                "frame_keys": [
+                    [0, 0, 280, 163],
+                    [290, 0, 280, 163],
+                    [570, 0, 280, 163]
+                ]
+            },
+            {
+                "type": 2,
+                "texture_path": "templates/menu/info2.png",
+                "pos": [820, 515],
+                "callback_id": 2,
+                "sound_path": "templates/sounds/ui_change_selection.ogg",
+                "frame_keys": [
+                    [0, 0, 280, 163],
+                    [290, 0, 280, 163],
+                    [570, 0, 280, 163]
+                ]
+            },
+            {
+                "type": 2,
+                "texture_path": "templates/menu/exit2.png",
+                "pos": [820, 690],
+                "callback_id": 3,
+                "sound_path": "templates/sounds/ui_change_selection.ogg",
+                "frame_keys": [
+                    [0, 0, 280, 163],
+                    [290, 0, 280, 163],
+                    [570, 0, 280, 163]
+                ]
+            },
+            {
+                "type": 0,
+                "texture_path": "templates/menu/Ships.png",
+                "pos": [0, 0]
+            },
+            {
+                "type": 3,
+                "texture_path": "templates/menu/menu_bg_test_with_text.jpg",
+                "pos": [0, 0]
+            }
+        ]
+    }
+}

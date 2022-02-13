@@ -1,0 +1,29 @@
+{
+    "quest": {
+        "id": 1,
+        "name": "Go to Celestia (2330, 730)",
+        "number_of_step": 2,
+        "reward_item": 1,
+        "reward_item_number": 1,
+        "reward_money": 1000,
+        "step_list": [
+            {
+                "type": 0,
+                "validated": 0,
+                "step_number": 2,
+                "description": "Go back to Oswald to learn more",
+                "scene": 5,
+                "pos": [1000, 3000]
+            },
+            {
+                "type": 1,
+                "validated": 0,
+                "step_number": 1,
+                "description": "Free Andor (1000, 3000) of the enemys",
+                "scene": 5,
+                "fight_scene": "config/fight_config/fight_quest2.json",
+                "pos": [1000, 3000]
+            }
+        ]
+    }
+}

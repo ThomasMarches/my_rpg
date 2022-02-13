@@ -1,0 +1,8 @@
+{
+    "type": 4,
+    "texture_path": "templates/menu/scrollbar_fleur_new.png",
+    "pos": [1010, 375],
+    "box": [1010, 375, 107, 0],
+    "volume_unit": 10,
+    "bar_width": 500
+}

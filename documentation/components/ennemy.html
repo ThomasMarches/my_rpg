@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">My_RPG</a>
+					<nav id="nav">
+						<a href="../index.html">Home</a>
+						<a href="../documentation.html">How to play</a>
+						<a href="../download.html">Download</a>
+						<a href="../components.html">Components</a>
+						<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+					</nav>
+				</div>
+			</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+				<div class="flex flex-2">
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+								<ul>
+									<li><a href="game_object.html">Game_object</a></li>
+									<li><a href="callback.html">Callback function</a></li>
+									<li><a href="draw.html">Draw function</a></li>
+									<li><a href="update.html">Update function</a></li>
+									<li><a href="extend.html">Extend</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+								<ul>
+									<li><a href="json_value_type.html">json_value_type</a></li>
+									<li><a href="json_value.html">json_value</a></li>
+									<li><a href="json_object.html">json_object</a></li>
+									<li><a href="json_array.html">json_array</a></li>
+									<li><a href="json_constructors.html">Constructors</a></li>
+									<li><a href="get_from_json.html">Get from json function</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+								<ul>
+									<li><a href="scene.html">Scene</a></li>
+									<li><a href="player_spaceship.html">Player Spaceship</a></li>
+									<li><a href="player_village.html">Player_village</a></li>
+									<li><a href="player_fight.html">Player_fight</a></li>
+									<li><a href="shop.html">Shop</a></li>
+									<li><a href="npc.html">NPC</a></li>
+									<li><a href="item.html">Item</a></li>
+									<li><a href="quest.html">Quest</a></li>
+									<li><a href="text_handler.html">Text_handler</a></li>
+									<li><a href="music_handler.html">Music</a></li>
+									<li><a href="cursor_handler.html">Cursor</a></li>
+									<li><a href="ennemy.html">Ennemy</a></li>
+									<li><a href="planet.html">Planet</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+				</div><br>
+				<center>	
+					<header>
+						<h2>Ennemy</h2>
+						<p>On this page, we will explain how works the ennemy system.</p>
+						<hr class="major">
+					</header>
+				</center>
+					<header>
+						<h3>What is an ennemy concretely ?</h3>
+					</header>
+					<p>An ennemy is an entity ( a <a href="game_object.html">game_object</a> ) that you will fight during a <a href="player_fight.html">fight_scene</a>. The ennemy is initailized in the json_file of the fight scene and the path of the json file is inside the json file of a quest.<br>I suggest you to go read <a href="json_constructors.html">constructor's documentation</a> if you want really want to understand how the ennemy is being initialized thanks to the json file.</p>
+					<hr class="major">
+					<header>
+						<h3>Ennemy structure</h3>
+					</header>	
+					<pre><code><font color="green">typedef</font> struct <font color="red">ennemy</font> {
+    <font color="red">char *</font>name;
+    <font color="red">int </font>hp;
+    <font color="red">int </font>max_hp;
+    <font color="red">int </font>shield;
+    <font color="red">int </font>action_number;
+    <font color="red">int </font>dodge_value;
+    <font color="red">int </font>repair_value;
+    <font color="red">item_id </font>equiped_weapon;
+    <font color="red">int </font>damage;
+    <font color="red">bool </font>in_fight;
+    <font color="red">action_id *</font>id;
+    <font color="red">int </font>repair_statue;
+    <font color="red">sfText *</font>name_text;
+    <font color="red">sfText *</font>hp_text;
+    <font color="red">sfText *</font>shield_text;
+} <font color="red">ennemy_t</font>;</code></pre>
+                <div class="table-wrapper">	
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Value's name</th>
+                                <th>Usage</th>
+                                <th>type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>name</td>
+                                <td>Contains the ennemy's name.</td>
+                                <td><font color="red">char *</td></font>
+                            </tr>
+                            <tr>
+                                <td>hp</td>
+                                <td>Contains the ennemy's hp.</td>
+                                <td><font color="red">int</td></font>
+                            </tr>
+                            <tr>
+                                <td>max_hp</td>
+                                <td>Contains the ennemy's max hp.</td>
+                                <td><font color="red">int</td></font>
+                            </tr>
+                            <tr>
+                                <td>shield</td>
+                                <td>Contains the ennemy's shield.</td>
+                                <td><font color="red">int</td></font>
+                            </tr>
+                            <tr>
+                                <td>action_number</td>
+                                <td>Contains the number of actions the ennemy can make every turn.</td>
+                                <td><font color="red">int</td></font>
+                            </tr>
+                            <tr>
+                                <td>dodge_value</td>
+                                <td>The value to know how many times he decided to dodge in a given turn.</td>
+                                <td><font color="red">int</td></font>
+                            </tr>
+                            <tr>
+                                <td>repair_value</td>
+                                <td>Value to know how much he's going to heal everytime he does a repair action.</td>
+                                <td><font color="red">int</td></font>
+                            </tr>
+                            <tr>
+                                <td>equiped_weapon</td>
+                                <td>Contains the ennemy's equiped weapon.</td>
+                                <td><font color="red">item_id</td></font>
+                            </tr>
+                            <tr>
+                                <td>damage</td>
+                                <td>Contains the ennemy's damage of each attack.</td>
+                                <td><font color="red">int</td></font>
+                            </tr>
+                            <tr>
+                                <td>in_fight</td>
+                                <td>Boolean to know if the fight is on.</td>
+                                <td><font color="red">boolean</td></font>
+                            </tr>
+                            <tr>
+                                <td>id</td>
+                                <td>Table of actions that contains the ennemy's actions of every turn</td>
+                                <td><font color="red">action_id *</td></font>
+                            </tr>
+                            <tr>
+                                <td>repair_statue</td>
+                                <td>This value is to know if the ennemy is able to repair this turn or not.</td>
+                                <td><font color="red">int</td></font>
+                            </tr>
+                            <tr>
+                                <td>name_text</td>
+                                <td>Text drawing the name of the ennemy on the fighting board.</td>
+                                <td><font color="red">sfText *</td></font>
+                            </tr>
+                            <tr>
+                                <td>hp_text</td>
+                                <td>Text drawing the life of the ennemy on the fighting board.</td>
+                                <td><font color="red">sfText *</td></font>
+                            </tr>
+                            <tr>
+                                <td>shield_text</td>
+                                <td>Text drawing the shield of the ennemy on the fighting board.</td>
+                                <td><font color="red">sfText *</td></font>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr class="major">
+                <header>
+                    <h3>How to create an ennemy.</h3>
+                </header>
+                <p>Okay now let's imagine you want to create a fight. You will first need to initialize a <a href="quest.html">quest</a> and to put the json configuration file of your fight_scene containing the ennemy inside one of the quest step.</p>
+                <header>
+                    <h3>Exemple of creating an ennemy.</h3>
+                </header>
+                <p>Let's imagine you've gone to the <a href="quest.html">quest's documentation</a> and you've created a whole quest. Now you want to create the ennemy of a <a href="fight_scene.html">fight_scene</a>. So you will create the json file of the <a href="fight_scene.html">fight_scene</a> and you will want to init an ennemy. Don't forget to checkout the documentation of the <a href="fight_scene.html">fight_scene</a> and the <a href="quest.html">quest</a> to be sure you dont forget anything on your scene.</p>
+                <pre><code>{
+    "<font color="purple">opponent</font>": {
+        "<font color="orange">name</font>": "Dark Vador",
+        "<font color="orange">pos</font>": [1100, 300],
+        "<font color="orange">weapon_id</font>": 0,
+        "<font color="orange">texture_path</font>": "templates/menu/ship2.png",
+        "<font color="orange">hp</font>" : 100,
+        "<font color="orange">shield</font>": 100,
+        "<font color="orange">quest_id</font>": 0,
+        "<font color="orange">repair_value</font>": 10,
+        "<font color="orange">action_number</font>": 3,
+        "<font color="orange">damage</font>": 10
+    },
+}</code></pre>
+            <div class="table-wrapper">	
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Value's name</th>
+                            <th>Usage</th>
+                            <th>type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>Contains the ennemy's name.</td>
+                            <td><font color="red">char *</td></font>
+                        </tr>
+                        <tr>
+                            <td>pos</td>
+                            <td>Always leave 1100, 300.</td>
+                            <td><font color="red">sfVector2f</td></font>
+                        </tr>
+                        <tr>
+                            <td>weapon_id</td>
+                            <td>Contains the ennemy's equiped weapon.</td>
+                            <td><font color="red">item_id</td></font>
+                        </tr>
+                        <tr>
+                            <td>texture_path</td>
+                            <td>Filepath to the sprite sheet of your ennemy.</td>
+                            <td><font color="red">char *</td></font>
+                        </tr>
+                        <tr>
+                            <td>hp</td>
+                            <td>Contains the ennemy's hp.</td>
+                            <td><font color="red">int</td></font>
+                        </tr>
+                        <tr>
+                            <td>shield</td>
+                            <td>Contains the ennemy's shield.</td>
+                            <td><font color="red">int</td></font>
+                        </tr>
+                        <tr>
+                            <td>repair_value</td>
+                            <td>Value to know how much he's going to heal everytime he does a repair action.</td>
+                            <td><font color="red">int</td></font>
+                        </tr>
+                        <tr>
+                            <td>action_number</td>
+                            <td>Contains the number of actions the ennemy can make every turn.</td>
+                            <td><font color="red">int</td></font>
+                        </tr>
+                        <tr>
+                            <td>damage</td>
+                            <td>Contains the ennemy's damage of each attack.</td>
+                            <td><font color="red">int</td></font>
+                        </tr>
+                    </tbody>
+                </table>
+            
+            
+            
+            </div>
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

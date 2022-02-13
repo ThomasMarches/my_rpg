@@ -1,0 +1,108 @@
+{
+    "scene": {
+        "id": 5,
+        "z_index_deepth": 2,
+        "draw_id": 0,
+        "update_id": 0,
+        "events_ids": [
+            [0, 0],
+            [1, 9],
+            [3, 9],
+            [4, 5],
+            [5, 5],
+            [8, 5]
+        ],
+        "background_color": [0, 0, 0, 0],
+        "objects_list": [
+            {
+                "type": 20,
+                "texture_path": "templates/Window.png"
+            },
+            {
+                "type": 11,
+                "button": {
+                    "type": 2,
+                    "texture_path": "templates/menu/play2.png",
+                    "pos": [820, 350],
+                    "callback_id": 0,
+                    "sound_path": "templates/sounds/ui_change_selection.ogg",
+                    "frame_keys": [
+                        [0, 0, 280, 163],
+                        [290, 0, 280, 163],
+                        [570, 0, 280, 163]
+                    ]
+                },
+                "text": {
+                    "type": 7,
+                    "string": "Space My RPG !",
+                    "font": "templates/font/space.ttf",
+                    "pos": [400, 100],
+                    "style": 0,
+                    "size": 100
+                },
+                "player_pos": {
+                    "type": 7,
+                    "string": "",
+                    "font": "templates/font/space.ttf",
+                    "pos": [0, 0],
+                    "style": 0,
+                    "size": 24
+                }
+            },
+            {
+                "type": 8,
+                "texture_path": "templates/menu/ship1.png",
+                "pos": [890, 399],
+                "box": [890, 399, 200, 202]
+            },
+            {
+                "type": 10,
+                "name": "truc4",
+                "texture_path": "templates/ezgif.com-gif-maker.png",
+                "config": "config/planet_config/planet1.json",
+                "pos": [-330, -330],
+                "frame_keys": [
+                    [0, 0, 768, 768]
+                ]
+            },
+            {
+                "type": 10,
+                "name": "truc3",
+                "texture_path": "templates/ezgif.com-gif-maker (1).png",
+                "config": "config/planet_config/planet2.json",
+                "pos": [2330, 730],
+                "frame_keys": [
+                    [0, 0, 768, 768]
+                ]
+            },
+            {
+                "type": 10,
+                "name": "truc2",
+                "texture_path": "templates/ezgif.com-gif-maker(1).png",
+                "config": "config/planet_config/planet3.json",
+                "pos": [-5330, 4730],
+                "frame_keys": [
+                    [0, 0, 768, 768]
+                ]
+            },
+            {
+                "type": 10,
+                "name": "truc1",
+                "config": "config/planet_config/planet4.json",
+                "texture_path": "templates/ezgif.com-gif-maker(3).png",
+                "pos": [5330, -7730],
+                "frame_keys": [
+                    [0, 0, 768, 768]
+                ]
+            },
+            {
+                "type": 9,
+                "background_texture": "templates/galaxie/galaxie_background.png"
+            },
+            {
+                "type": 12,
+                "texture_path": "templates/inv.png"
+            }
+        ]
+    }
+}

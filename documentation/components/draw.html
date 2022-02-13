@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="inner">
+				<a href="../index.html" class="logo">My_RPG</a>
+				<nav id="nav">
+					<a href="../index.html">Home</a>
+					<a href="../documentation.html">Documentation</a>
+					<a href="../download.html">Download</a>
+					<a href="../lore.html">History</a>
+					<a href="../components.html">Components</a>
+					<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+					<div class="flex flex-2">
+						<article>
+							<ul id="rolling-menu">
+								<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+									<ul>
+										<li><a href="game_object.html">Game_object</a></li>
+										<li><a href="callback.html">Callback function</a></li>
+										<li><a href="draw.html">Draw function</a></li>
+										<li><a href="update.html">Update function</a></li>
+										<li><a href="extend.html">Extend</a></li>						
+
+									</ul>
+								</li>
+							</ul>
+							<ul id="rolling-menu">
+								<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+									<ul>
+										<li><a href="json_value_type.html">json_value_type</a></li>
+										<li><a href="json_value.html">json_value</a></li>
+										<li><a href="json_object.html">json_object</a></li>
+										<li><a href="json_array.html">json_array</a></li>
+										<li><a href="json_constructors.html">Constructors</a></li>
+										<li><a href="get_from_json.html">Get from json function</a></li>
+									</ul>
+								</li>
+							</ul>
+						</article>
+						<article>
+							<ul id="rolling-menu">
+								<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+									<ul>
+										<li><a href="scene.html">Scene</a></li>
+										<li><a href="player_spaceship.html">Player Spaceship</a></li>
+										<li><a href="player_village.html">Player_village</a></li>
+										<li><a href="player_fight.html">Player_fight</a></li>
+										<li><a href="shop.html">Shop</a></li>
+										<li><a href="npc.html">NPC</a></li>
+										<li><a href="item.html">Item</a></li>
+										<li><a href="quest.html">Quest</a></li>
+										<li><a href="text_handler.html">Text_handler</a></li>
+										<li><a href="music_handler.html">Music</a></li>
+										<li><a href="cursor_handler.html">Cursor</a></li>
+										<li><a href="ennemy.html">Ennemy</a></li>
+										<li><a href="planet.html">Planet</a></li>
+									</ul>
+								</li>
+							</ul>
+						</article>
+					</div><br>
+					<center>
+						<header>
+							<h2>Draw function</h2>
+							<p>On this page, we will explain how the draw function of a <a href="game_object.html">game_object</a> works.</p>
+							<hr class="major">
+						</header>
+					</center>
+					<header>
+						<h3>How does it work ?</h3>
+					</header>
+						<p>The draw function will be called to draw the <a href="game_object.html">game_object</a>. When we initalize a basic object, the draw function is automatically set to a simple function that calls the function of the CSFML sfRenderWindowDrawSprite(). So if you only need to draw the object on its own and nothing else, dont touch the draw function. To be able to draw elements in a priority order, every object has a z_index. This index is used when we go trough the object list, we will draw all the object with the biggest z_index, and decrement the index of the loop, so that we draw every object in the good order since CSFML is only 2D.</p>
+						<pre><code><font color="red">void</font> draw_objects(<font color="red">game_object_t *</font>object, <font color="red">sfRenderWindow *</font>window, <font color="red">int</font> z_index_max)
+{
+	<font color="red">game_object_t *</font>tmp = object;
+
+	if (object == NULL)
+		<font color="blue">return</font>;
+	for (int i = z_index_max; i >= 0;) {
+		if (object->texture != NULL && object->z_index == i && object->draw != NULL)
+			object->draw(window, object);
+		object = object->next;
+		if (object == NULL) {
+			object = tmp;
+			i--;
+		}
+	}
+}</code></pre>
+					<p>We will go trough all the object_list to check every object's draw function, if the function isnt null and its the proper z_index, it will call the object's draw function.</p>
+					<hr class="major">
+					<header>
+						<h3>Create a draw function</h3>
+					</header>
+					<p>To use a draw function, you need to take care the arguments are the one needed. As we can see in the <a href="game_object.html">game_object </a>structure, the draw function take a <font color="red">sfRenderWindow *</font> and a pointer to the game_object to be drawn. In this exemple we initialize all our game_object_t for the space background, and we set their draw function to &draw_space_background.</p>
+				<pre><code><font color="red">game_object_t *</font>rpg_galaxie_generate_space(void)
+{
+	<font color="red">game_object_t</font> *object = rpg_galaxie_create_ship();
+	<font color="red">int</font> x_img_space = 1920 * - 5;
+	<font color="red">int</font> y_img_space = 1080 * - 5;
+
+	for (int y = 0, x = 0; y != SIZE_Y_SPACE; x++, x_img_space += 1920) {
+		if (x == SIZE_X_SPACE) {
+			x_img_space = 1920 * - 5;
+			x = 0;
+			y++;
+			y_img_space += 1080;
+		}
+		object = create_game_object(object, (char *)BACKGROUND_SPACE, (<font color="red">sfVector2f</font>) {x_img_space, y_img_space}, DECOR);
+		object->draw = &draw_space_background;
+		if (object == NULL)
+			<font color="blue">return</font> (NULL);
+	}
+	<font color="blue">return</font> (object);
+}</code ></pre>
+				<p>Now that we got our objects created, we create the draw function draw_space_background(). In this exemple, it's usefull to create our own draw function cause we dont want to draw every object of the space. We only want to draw the object's that are on our screen.</p>
+				<pre><code><font color="red">void</font> draw_space_background(<font color="red">sfRenderWindow *</font>window, <font color="red">game_object_t *</font>object)
+{
+	if (object->pos.x > -2880 && object->pos.x < 2880 && \
+	object->pos.y > -1620 && object->pos.y < 1620)
+		sfRenderWindow_drawSprite(window, object->sprite, NULL);
+}</code ></pre>
+				<p>So to conclude, when the loop will draw every object, thanks to the draw function we created, it will only draw the object's present on our screen.</p>
+				<h4>Argument of a draw function</h4>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>window</td>
+								<td>The window on which we draw the object.</td>
+								<td><font color="red">sfRenderWindow *</td></font>
+							</tr>
+							<tr>
+								<td>object</td>
+								<td>The <a href="game_object.html">game_object</a> we got to draw.</td>
+								<td><font color="red">game_object_t *</td></font>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

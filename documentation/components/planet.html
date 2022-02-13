@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">My_RPG</a>
+					<nav id="nav">
+						<a href="../index.html">Home</a>
+						<a href="../documentation.html">How to play</a>
+						<a href="../download.html">Download</a>
+						<a href="../components.html">Components</a>
+						<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+					</nav>
+				</div>
+			</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+				<div class="flex flex-2">
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+								<ul>
+									<li><a href="game_object.html">Game_object</a></li>
+									<li><a href="callback.html">Callback function</a></li>
+									<li><a href="draw.html">Draw function</a></li>
+									<li><a href="update.html">Update function</a></li>
+									<li><a href="extend.html">Extend</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+								<ul>
+									<li><a href="json_value_type.html">json_value_type</a></li>
+									<li><a href="json_value.html">json_value</a></li>
+									<li><a href="json_object.html">json_object</a></li>
+									<li><a href="json_array.html">json_array</a></li>
+									<li><a href="json_constructors.html">Constructors</a></li>
+									<li><a href="get_from_json.html">Get from json function</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+								<ul>
+									<li><a href="scene.html">Scene</a></li>
+									<li><a href="player_spaceship.html">Player Spaceship</a></li>
+									<li><a href="player_village.html">Player_village</a></li>
+									<li><a href="player_fight.html">Player_fight</a></li>
+									<li><a href="shop.html">Shop</a></li>
+									<li><a href="npc.html">NPC</a></li>
+									<li><a href="item.html">Item</a></li>
+									<li><a href="quest.html">Quest</a></li>
+									<li><a href="text_handler.html">Text_handler</a></li>
+									<li><a href="music_handler.html">Music</a></li>
+									<li><a href="cursor_handler.html">Cursor</a></li>
+									<li><a href="ennemy.html">Ennemy</a></li>
+									<li><a href="planet.html">Planet</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+				</div><br>
+				<center>
+					<header>
+						<h2>Planet</h2>
+						<p>On this page, we will explain how works the planet system.</p>
+						<hr class="major">
+					</header>
+				</center>
+				<header>
+					<h3>What is a planet concretely ?</h3>
+				</header>
+				<p>A planet is a <a href="game_object.html">game_object</a> in the galaxy scene with a framekey to animate it. And it's also linked to a button to land on the specific planet.<br>I suggest you to go read <a href="json_constructors.html">constructor's documentation</a> if you want really want to understand how the planet is being initialized thanks to the json file. </p>
+				<hr class="major">
+				<header>
+					<h3>What can contain an object inside a scene json_configuration file to create a planet ?</h3>
+				</header>
+				<p>Here is an exemple of a way to create and draw a planet on the galaxie scene thanks to a json file. Just add the proper infos inside the scene's objects_list and it will draw it on its own. </p>
+				<pre><code>"<font color="orange">objects_list</font>": [
+	{
+		"<font color="purple">type</font>": 10,
+		"<font color="purple">name</font>": "planet",
+		"<font color="purple">texture_path</font>": "templates/ezgif.com-gif-maker.png",
+		"<font color="purple">pos</font>": [-330, -330],
+		"<font color="purple">frame_keys</font>": [
+			[0, 0, 768, 768]
+		]
+	},
+]</code></pre>
+				<p>On this table, you can see the value's name in the json file, its usage, and the type of the value. Those are the values you can put inside your json file to create the planet.</p>
+				<div class="table-wrapper">	
+					<table>
+						<thead>
+							<tr>
+								<th>Value's key</th>
+								<th>Usage</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>type</td>
+								<td>Always put 10 for a planet.</td>
+								<td><font color="red">int</td></font>
+							</tr>
+							<tr>
+								<td>name</td>
+								<td>Name of the planet.</td>
+								<td><font color="red">char *</td></font>
+							</tr>
+							<tr>
+								<td>texture_path</td>
+								<td>Filepath to the sprite sheet of your planet.</td>
+								<td><font color="red">char *</td></font>
+							</tr>
+							<tr>
+								<td>pos</td>
+								<td>Position of the planet inside the galaxie.</td>
+								<td><font color="red">sfVector2f</td></font>
+							</tr>
+							<tr>
+								<td>frame_keys</td>
+								<td>Frame key table to animate the planet ( if you want to ).</td>
+								<td><font color="red">sfIntRect **</td></font>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+{
+    "type": 5,
+    "texture_path": "templates/menu/bar.png",
+    "pos": [1010, 400],
+    "box": [1000, 400, 500, 10],
+    "volume_unit": 10,
+    "min_volume": 0,
+    "max_volume": 100
+}

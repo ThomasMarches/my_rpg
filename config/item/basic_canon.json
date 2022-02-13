@@ -1,0 +1,8 @@
+{
+    "item_id": 0,
+    "item_type": 0,
+    "damage": 50,
+    "name": "Basic Canoon",
+    "description": "A basic canoon !",
+    "path": "templates/item.png"
+}

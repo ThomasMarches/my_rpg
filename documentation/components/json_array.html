@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">My_RPG</a>
+					<nav id="nav">
+						<a href="../index.html">Home</a>
+						<a href="../documentation.html">How to play</a>
+						<a href="../download.html">Download</a>
+						<a href="../components.html">Components</a>
+						<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+					</nav>
+				</div>
+			</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+				<div class="flex flex-2">
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+								<ul>
+									<li><a href="game_object.html">Game_object</a></li>
+									<li><a href="callback.html">Callback function</a></li>
+									<li><a href="draw.html">Draw function</a></li>
+									<li><a href="update.html">Update function</a></li>
+									<li><a href="extend.html">Extend</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+								<ul>
+									<li><a href="json_value_type.html">json_value_type</a></li>
+									<li><a href="json_value.html">json_value</a></li>
+									<li><a href="json_object.html">json_object</a></li>
+									<li><a href="json_array.html">json_array</a></li>
+									<li><a href="json_constructors.html">Constructors</a></li>
+									<li><a href="get_from_json.html">Get from json function</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+								<ul>
+									<li><a href="scene.html">Scene</a></li>
+									<li><a href="player_spaceship.html">Player Spaceship</a></li>
+									<li><a href="player_village.html">Player_village</a></li>
+									<li><a href="player_fight.html">Player_fight</a></li>
+									<li><a href="shop.html">Shop</a></li>
+									<li><a href="npc.html">NPC</a></li>
+									<li><a href="item.html">Item</a></li>
+									<li><a href="quest.html">Quest</a></li>
+									<li><a href="text_handler.html">Text_handler</a></li>
+									<li><a href="music_handler.html">Music</a></li>
+									<li><a href="cursor_handler.html">Cursor</a></li>
+									<li><a href="ennemy.html">Ennemy</a></li>
+									<li><a href="planet.html">Planet</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+				</div><br>
+				<center>
+					<header>
+						<h2>Json_array</h2>
+						<p>On this page, we will explain how works the json_array.</p>
+						<hr class="major">
+					</header>
+				</center>
+					<header>
+						<h3>struct json_array_t</h3>
+					</header>
+					<p>The struct json_array contains two components. First of all, the number of element it contains and then, a table of <a href="json_value.html">json_value_t</a> with all the value of a component.</p>
+					<pre><code>typedef struct {
+    <font color="red">int</font> elem_count;
+    <font color="red">json_value_t **</font>array;
+} <font color="red">json_array_t</font>;</code></pre>
+					<hr class="major">
+					<header>
+						<h3>Usage exemple</h3>
+					</header>
+					<p>Here you can see an exemple of a json_array_t inside a json configuration file.</p>
+					<pre><code>"<font color="orange">scene</font>": {
+	"<font color="purple">id</font>": 0,
+	"<font color="purple">z_index_deepth</font>": 0,
+	"<font color="purple">draw_id</font>": 0,
+	"<font color="purple">update_id</font>": 0,
+	"<font color="purple">events_ids</font>": [
+		[0, 0],
+		[1, 9]
+	],
+	"<font color="purple">background_color</font>": [0, 0, 0, 0]
+}</code></pre>
+					<p>In this exemple, the json_array values would be: <br>elem_count: 6</p>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>array number</th>
+									<th>json_value</th>
+									<th>json_value_type</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>0</td>
+									<td>0</td>
+									<td><font color="orange">INT</font></td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>0</td>
+									<td><font color="orange">INT</font></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>0</td>
+									<td><font color="orange">INT</font></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>0</td>
+									<td><font color="orange">INT</font></td>
+								</tr>								
+								<tr>
+									<td>4</td>
+									<td>{0, 0}, {1, 9}</td>
+									<td><font color="orange">ARRAY</font></td>
+								</tr>								
+								<tr>
+									<td>5</td>
+									<td>{0, 0, 0, 0}</td>
+									<td><font color="orange">ARRAY</font></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<hr class="major">
+					<header>
+						<h3>Json_array_t function</h3>
+                    </header>
+                    <pre><code><font color ="red">json_array_t *</font>json_array_create(<font color="red">void</font>);
+<font color ="red">void</font> json_array_add_value(<font color="red">json_array_t *</font>, <font color="red">json_value_t *</font>value);
+<font color ="red">json_array_t *</font>json_parse_array(<font color="red">char **</font>buff);
+<font color ="red">void</font> json_array_destroy(<font color="red">json_array_t *</font>array);</code></pre>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "pnj": {
+        "id": 7,
+        "type": 1,
+        "name": "Whanos",
+        "dialog": [
+            {
+                "type": 0,
+                "speaker": 0,
+                "message": " : DO YOU KNOW DA WAY !"
+            }
+        ]
+    }
+}

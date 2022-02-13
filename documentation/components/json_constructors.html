@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">My_RPG</a>
+					<nav id="nav">
+						<a href="../index.html">Home</a>
+						<a href="../documentation.html">How to play</a>
+						<a href="../download.html">Download</a>
+						<a href="../components.html">Components</a>
+						<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+					</nav>
+				</div>
+			</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+				<div class="flex flex-2">
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+								<ul>
+									<li><a href="game_object.html">Game_object</a></li>
+									<li><a href="callback.html">Callback function</a></li>
+									<li><a href="draw.html">Draw function</a></li>
+									<li><a href="update.html">Update function</a></li>
+									<li><a href="extend.html">Extend</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+								<ul>
+									<li><a href="json_value_type.html">json_value_type</a></li>
+									<li><a href="json_value.html">json_value</a></li>
+									<li><a href="json_object.html">json_object</a></li>
+									<li><a href="json_array.html">json_array</a></li>
+									<li><a href="json_constructors.html">Constructors</a></li>
+									<li><a href="get_from_json.html">Get from json function</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+								<ul>
+									<li><a href="scene.html">Scene</a></li>
+									<li><a href="player_spaceship.html">Player Spaceship</a></li>
+									<li><a href="player_village.html">Player_village</a></li>
+									<li><a href="player_fight.html">Player_fight</a></li>
+									<li><a href="shop.html">Shop</a></li>
+									<li><a href="npc.html">NPC</a></li>
+									<li><a href="item.html">Item</a></li>
+									<li><a href="quest.html">Quest</a></li>
+									<li><a href="text_handler.html">Text_handler</a></li>
+									<li><a href="music_handler.html">Music</a></li>
+									<li><a href="cursor_handler.html">Cursor</a></li>
+									<li><a href="ennemy.html">Ennemy</a></li>
+									<li><a href="planet.html">Planet</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+				</div><br>
+				<center>
+					<header>
+						<h2>Json_constructors</h2>
+						<p>On this page, we will explain how we created a constructor using json and the lib my_game.</p>
+						<hr class="major">
+					</header>
+				</center>
+					<header>
+						<h3>A mix of the lib my_game and the json_parser.</h3>
+					</header>
+					<p>We decided to use the json parser and my_game lib to create a system that will initialize automatically game_objects using the json_file. Which means inside your code, you dont need to call a function that initalize a <a href="game_object.html">game_object</a>, if you follow the given exemples of this page, the object will be created thanks to a json file..</p>
+					<h3></h3>
+					<hr class="major">
+					<header>
+						<h3>Game_object exemple inside a json file.</h3>
+					</header>
+					<p>Here you can see an exemple of object used inside the object_list of a scene.</p>
+					<pre><code><font color="orange">"objects_list"</font>: [
+	{
+		<font color="red">"type"</font>: 0,
+		<font color="red">"string"</font>: "How to play",
+		<font color="red">"font"</font>: "templates/font/space.ttf",
+		<font color="red">"pos"</font>: [400, 100],
+		<font color="red">"style"</font>: 0,
+		<font color="red">"size"</font>: 100
+	}
+]</code></pre>
+					<p>In this exemple, we initializing a text using the <a href="text_handler.html">text_handler</a>. But what's behind this?</p>
+					<hr class="major">
+					<header>
+						<h3>Constructors file.</h3>
+					</header>
+					<p>Let's head to the constructors.h file and analyse whats inside. We can see three components. The enum, the protype of the different functions, and the function's pointer table. Lets keep only the text_handler components and analyse how it works.</p>
+					<pre><code><font color="red">enum</font> {
+	<font color="orange">TEXT_HANDLER_CONSTRUCTOR</font>,
+	<font color="orange">CONSTRUCTORS_MAX_ID</font>
+};
+
+<font color="red">game_object_t *</font>rpg_create_text_handler_from_conf(<font color="red">game_object_t *</font>last, <font color="red">json_object_t *</font>js, <font color="red">game_t *</font>game, <font color="red">scene_t *</font>scene);
+
+<font color="purple">static</font> <font color="red">game_object_t *</font>(*CONSTRUCTORS[])(<font color="red">game_object_t *</font>, <font color="red">json_object_t *</font>, <font color="red">game_t *</font>, <font color="red">scene_t *</font>) = {
+    &<font color="blue">rpg_create_text_handler_from_conf</font>
+};</code></pre>
+			<p>Okay how does all of this work together? It's simple. <br><br>Inside our json file, there's a line written <b>"type": 0,</b>. This line is linked to the enum of constructors.h. And the function's point table is also linked to the enum.<br>So in this exemple, our library will parse the json file, get the object_lists of it, parse it, and see that the first object is of type "0". So it's gonna check inside the CONSTRUCTORS table whats the function at the index 0, and it will call it sending the <a href="json_object.html">json_object</a> containing all the informations of the object.</p>
+				<hr class="major">
+				<header>
+					<h3>Create my own constructors and game_object.</h3>
+				</header>
+				<p>Let's now imagine you want to create game_object containing the informations you want and you also want to link it to the json_parser.</p>
+				<ul>
+					<li>The first step is adding an index to the enum of constructors.h, create a function taking the same argument as <b>rpg_create_text_handler_from_conf</b> that we've seen before, and adding its prototypes to the .h file.</li>
+					<br><li>The second step is moduling your object and your <a href="extend.html">object->extend</a> using the json_get functions to get any informations you need from the json file and put them inside your extend structure or your <a href="game_object.html">game_object</a> structure.</li>
+					<br><li>The third step is heading to game_object.h and add the game_object_type if it's needed.</li>
+					<br><li>The fourth step is creating the <a href="callback.html">callback</a>, <a href="update.html">update</a>, and <a href="draw.html">draw</a> functions if your game_object needs a particular one.</li>
+				</ul><br>
+		</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

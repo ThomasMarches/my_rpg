@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">My_RPG</a>
+					<nav id="nav">
+						<a href="../index.html">Home</a>
+						<a href="../documentation.html">How to play</a>
+						<a href="../download.html">Download</a>
+						<a href="../components.html">Components</a>
+						<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+					</nav>
+				</div>
+			</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+				<div class="flex flex-2">
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+								<ul>
+									<li><a href="game_object.html">Game_object</a></li>
+									<li><a href="callback.html">Callback function</a></li>
+									<li><a href="draw.html">Draw function</a></li>
+									<li><a href="update.html">Update function</a></li>
+									<li><a href="extend.html">Extend</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+								<ul>
+									<li><a href="json_value_type.html">json_value_type</a></li>
+									<li><a href="json_value.html">json_value</a></li>
+									<li><a href="json_object.html">json_object</a></li>
+									<li><a href="json_array.html">json_array</a></li>
+									<li><a href="json_constructors.html">Constructors</a></li>
+									<li><a href="get_from_json.html">Get from json function</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+								<ul>
+									<li><a href="scene.html">Scene</a></li>
+									<li><a href="player_spaceship.html">Player Spaceship</a></li>
+									<li><a href="player_village.html">Player_village</a></li>
+									<li><a href="player_fight.html">Player_fight</a></li>
+									<li><a href="shop.html">Shop</a></li>
+									<li><a href="npc.html">NPC</a></li>
+									<li><a href="item.html">Item</a></li>
+									<li><a href="quest.html">Quest</a></li>
+									<li><a href="text_handler.html">Text_handler</a></li>
+									<li><a href="music_handler.html">Music</a></li>
+									<li><a href="cursor_handler.html">Cursor</a></li>
+									<li><a href="ennemy.html">Ennemy</a></li>
+									<li><a href="planet.html">Planet</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+				</div><br>
+				<center>
+					<header>
+						<h2>Item</h2>
+						<p>On this page, we will explain how works the item handler of our project.</p>
+						<hr class="major">
+					</header>
+				</center>
+					<header>
+						<h3>How to create an item</h3>
+					</header>
+						<p>To create an item, you will need to create and json configuration file in the folder config/item and then to link the file path of the json file inside Include/item/item_path.h. Finally you'll need to add its id to the item_id.h file, here is an exemple.</p>
+					<header>
+						<h3>Json configuration file</h3>
+					</header>
+						<pre><code>{
+<font color="purple">item_id"</font>: 0,
+<font color="purple">item_type"</font>: 0,
+<font color="purple">damage"</font>: 50,
+<font color="purple">name"</font>: "Basic Canoon",
+<font color="purple">description"</font>: "A basic but heavy canoon !",
+<font color="purple">path"</font>: "templates/item.png"
+}</code></pre>
+					<p></p>
+				
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>item_id</td>
+								<td>Id of your item</td>
+								<td><font color="red">item_id</td></font>
+							</tr>
+							<tr>
+								<td>item_type</td>
+								<td>Type of the item</td>
+								<td><font color="red">item_type</td></font>
+							</tr>
+							<tr>
+								<td>name</td>
+								<td>Name of the item</td>
+								<td><font color="red">char *</td></font>
+							</tr>
+							<tr>
+								<td>description</td>
+								<td>Description of the item</td>
+								<td><font color="red">char *</td></font>
+							</tr>
+							<tr>
+								<td>Path</td>
+								<td>Sprite_path to the item 50x50px image</td>
+								<td><font color="red">char *</td></font>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<header>
+					<h3>What's an item_id ?</h3>
+				</header>
+					<p>An item_id is used to make the difference between every item. If you create an item or want to know how it works. Checkout include/item/item_id.h</p>
+				<pre><code><font color="green">typedef</font> <font color="red">enum</font> {
+	<font color="orange">BASIC_CANON</font>,
+	<font color="orange">LASER_CANON</font>,
+	<font color="orange">PLASMA_CANON</font>,
+	<font color="orange">BASIC_ROCKET</font>,
+	<font color="orange">PLASMA_ROCKET</font>,
+	<font color="orange">REPAIRING_ITEM</font>,
+} <font color="red">item_id</font>;</code></pre>
+				<header>
+					<h3>What's an item_type ?</h3>
+				</header>
+				<p>An item type is used to know whats the use of the item. If it's either a weapon, either an item to repair your ship, either an item gave for a quest.</p>
+				<pre><code><font color="green">typedef</font> <font color="red">enum</font> {
+	<font color="orange">WEAPON_ITEM</font>,
+	<font color="orange">REPAIR_ITEM</font>,
+	<font color="orange">QUEST_ITEM</font>,
+} <font color="red">item_type</font>;</code></pre>
+			</div>
+<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

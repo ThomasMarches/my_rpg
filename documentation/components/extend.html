@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="../index.html" class="logo">My_RPG</a>
+					<nav id="nav">
+						<a href="../index.html">Home</a>
+						<a href="../documentation.html">How to play</a>
+						<a href="../download.html">Download</a>
+						<a href="../components.html">Components</a>
+						<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+					</nav>
+				</div>
+			</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+				<div class="flex flex-2">
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+								<ul>
+									<li><a href="game_object.html">Game_object</a></li>
+									<li><a href="callback.html">Callback function</a></li>
+									<li><a href="draw.html">Draw function</a></li>
+									<li><a href="update.html">Update function</a></li>
+									<li><a href="extend.html">Extend</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+								<ul>
+									<li><a href="json_value_type.html">json_value_type</a></li>
+									<li><a href="json_value.html">json_value</a></li>
+									<li><a href="json_object.html">json_object</a></li>
+									<li><a href="json_array.html">json_array</a></li>
+									<li><a href="json_constructors.html">Constructors</a></li>
+									<li><a href="get_from_json.html">Get from json function</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+					<article>
+						<ul id="rolling-menu">
+							<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+								<ul>
+									<li><a href="scene.html">Scene</a></li>
+									<li><a href="player_spaceship.html">Player Spaceship</a></li>
+									<li><a href="player_village.html">Player_village</a></li>
+									<li><a href="player_fight.html">Player_fight</a></li>
+									<li><a href="shop.html">Shop</a></li>
+									<li><a href="npc.html">NPC</a></li>
+									<li><a href="item.html">Item</a></li>
+									<li><a href="quest.html">Quest</a></li>
+									<li><a href="text_handler.html">Text_handler</a></li>
+									<li><a href="music_handler.html">Music</a></li>
+									<li><a href="cursor_handler.html">Cursor</a></li>
+									<li><a href="ennemy.html">Ennemy</a></li>
+									<li><a href="planet.html">Planet</a></li>
+								</ul>
+							</li>
+						</ul>
+					</article>
+				</div><br>
+				<center>	
+					<header>
+						<h2>Extend of a game_object</h2>
+						<p>On this page, we will explain the extend of a <a href="game_object.html">game_object</a> and how it works.</p>
+						<hr class="major">
+					</header>
+				</center>
+					<header>
+						<h3>What is an extend ?</h3>
+					</header>
+					<p>As you can see on the struct <a href="game_object.html">game_object </a>, there is a <font color="red">void *</font>extend and a <font color="red">void</font> (*free_extend)(<font color="red">void *</font>). The extend is a void pointer. Its used to link any kind of struct to our game_object to make it as generic as possible. Different kind of objects can need things that we didnt put in the struct to make it smoother. For exemple a spaceship would need hp, a npc would need a name, etc, etc... The free_extend is simply a function that we call to free the extend of the object.</p>
+					<header>
+						<h3>Exemple of extend</h3>
+					</header>	
+					<pre><code><font color="green">typedef</font> struct <font color="red">shop</font> {
+	<font color="red">char *</font>name;
+	<font color="red">char **</font>item_name;
+	<font color="red">char **</font>item_description;
+	<font color="red">int *</font>item_price;
+	<font color="red">int *</font>item_id;
+	<font color="red">sfVector2f **</font>item_pos;
+	<font color="red">sfIntRect **</font>item_rect;
+	<font color="red">int </font>number_of_items;
+	<font color="red">void</font> (*free_shop)(<font color="red">void *</font>);
+} <font color="red">shop_t</font>;</code></pre>
+					<p>Here you can see the struct shop_t. Let's imagine we want to create a game_object_t *shop. We will need things that arent inside a basic game_object. So we will use the void *extend to point on the a shop_t *.</p>
+					<h3>Create the shop</h3>
+					<p>Lets create a game_object_t *shop and use the extend to point on a shop_t *.</p>
+				<pre><code><font color="red">game_object_t *</font>rpg_shop_create(<font color="red">game_object_t *</font>last, <font color="red">char *</font>sprite_path, <font color="red">char *</font>settings_path)
+{
+	<font color="red">game_object_t *</font>object = create_game_object(last, sprite_path, (<font color="red">sfVector2f</font>) {0, 0}, SHOP);
+
+	if (object == NULL)
+		<font color="blue">return</font> (NULL);
+	object->extend = (<font color="red">shop_t *</font>) rpg_init_shop(settings_path);
+	if ((<font color="red">shop_t *</font>) object->extend == NULL)
+		<font color="blue">return</font> (NULL);
+	<font color="blue">return</font> (object);
+}</code ></pre>
+				<p>As you can see, we cast the extend a (shop_t *) and we call the function rpg_init_shop().</p>
+				<h3>Init the extend.</h4>
+				<p>Let's now create the function rpg_init_shop() to init the value of our extend..</p>
+				<pre><code><font color="red">shop_t *</font>rpg_init_shop(<font color="red">char *</font>path)
+{
+	<font color="red">shop_t *</font>shop = malloc(sizeof(<font color="red">shop_t</font>));
+
+	if (shop == NULL)
+		<font color="blue">return </font>(NULL);
+	//HERE YOU CAN INITIALIZE EVERY VALUE OF A STRUCT SHOP
+	<font color="blue">return</font> (shop);
+}</code ></pre>
+				<p>Don't forget everytime you'll want to acess the value of your extend, you will have to cast again like we did in the function rpg_shop_create().</p>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>

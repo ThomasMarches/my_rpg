@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>My_RPG</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="inner">
+				<a href="../index.html" class="logo">My_RPG</a>
+				<nav id="nav">
+					<a href="../index.html">Home</a>
+					<a href="../documentation.html">Documentation</a>
+					<a href="../download.html">Download</a>
+					<a href="../lore.html">History</a>
+					<a href="../components.html">Components</a>
+					<a href="https://github.com/Arcahub/MUL_my_rpg_2019">Github</a>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Three -->
+			<section id="three" class="wrapper">
+				<div class="inner">
+					<header class="align-center">
+						<h2>Components of the game !</h2>
+						<p>You want to modify the game? To add plugins ? On this page you'll be able to understand how the game is made and work on it. </p>
+
+					</header>
+				</div>
+			</section>
+			<div class="inner">
+					<div class="flex flex-2">
+						<article>
+							<ul id="rolling-menu">
+								<li><a href="#" style="font-size:25px; color: #5385c1;">Lib my_game</a>
+									<ul>
+										<li><a href="game_object.html">Game_object</a></li>
+										<li><a href="callback.html">Callback function</a></li>
+										<li><a href="draw.html">Draw function</a></li>
+										<li><a href="update.html">Update function</a></li>
+										<li><a href="extend.html">Extend</a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul id="rolling-menu">
+								<li><a href="#" style="font-size:25px; color: #5385c1;">Json parser</a>
+									<ul>
+										<li><a href="json_value_type.html">json_value_type</a></li>
+										<li><a href="json_value.html">json_value</a></li>
+										<li><a href="json_object.html">json_object</a></li>
+										<li><a href="json_array.html">json_array</a></li>									
+										<li><a href="json_constructors.html">Constructors</a></li>
+										<li><a href="get_from_json.html">Get from json function</a></li>
+									</ul>
+								</li>
+							</ul>
+						</article>
+						<article>
+							<ul id="rolling-menu">
+								<li><a href="#" style="font-size:25px; color: #5385c1;">Game components</a>
+									<ul>
+										<li><a href="scene.html">Scene</a></li>
+										<li><a href="player_spaceship.html">Player Spaceship</a></li>
+										<li><a href="player_village.html">Player_village</a></li>
+										<li><a href="player_fight.html">Player_fight</a></li>
+										<li><a href="shop.html">Shop</a></li>
+										<li><a href="npc.html">NPC</a></li>
+										<li><a href="item.html">Item</a></li>
+										<li><a href="quest.html">Quest</a></li>
+										<li><a href="text_handler.html">Text_handler</a></li>
+										<li><a href="music_handler.html">Music</a></li>
+										<li><a href="cursor_handler.html">Cursor</a></li>
+										<li><a href="ennemy.html">Ennemy</a></li>
+										<li><a href="planet.html">Planet</a></li>
+									</ul>
+								</li>
+							</ul>
+						</article>
+					</div><br>
+					<center><header>
+						<h2>Callback function</h2>
+						<p>On this page, we will explain how the callback function of a <a href="game_object.html">game_object</a> works.</p>
+						<hr class="major">
+					</center></header>
+					<header>
+						<h3>What is a callback function ?</h3>
+					</header>
+						<p>The callback function will be called if you click on the object. Here you can see how the callback function is called.</p>
+						<pre><code><font color="red">void</font> is_click_on_object(<font color="red">sfEvent</font> event, <font color="red">game_t *</font>game, <font color="red">scene_t *</font>scene, <font color="red">sfRenderWindow *</font>window)
+{
+	<font color ="red">game_object_t *</font>object = scene->objects_list;
+	<font color ="red">sfMouseButtonEvent</font> mouse_button = event.mouseButton;
+	<font color ="red">sfVector2i</font> pos = sfMouse_getPositionRenderWindow(game->window->window);
+	<font color ="red">int</font> x = pos.x;
+	<font color ="red">int</font> y = pos.y;
+
+	if (mouse_button.button != sfMouseLeft)
+		return;
+	for (; object; object = object->next) {
+		if (object->callback != NULL && sfIntRect_contains(&object->box, x, y))
+			object->callback(object, scene);
+	}
+}</code></pre>
+					<p>We will go trough all the object_list to check every object's callback function, if the function isnt null and we clicked on the object, it will call the object's callback function.</p>
+					<hr class="major">
+					<header>
+						<h3>Create a callback function</h3>
+					</header>
+					<p>To use a callback function, you need to take care the arguments are the one needed. As we can see in the <a href="game_object.html">game_object </a>structure, the callback function take a game_object and void *pointer. In this exemple we initialize a<a href="game_object.html"> game_object_t *</a>button, and we set its callback function to &play_button_function.</p>
+				<pre><code><font color="red">game_object_t *</font>rpg_in_game_menu_create_play_button(<font color="red">void</font>)
+{
+	<font color="red">game_object_t *</font>object = NULL;
+
+	object = create_text_button(object, (<font color="red">char *</font>)CONTINUE_BUTTON_PATH, (<font color="red">sfVector2f</font>) {CONTINUE_BUTTON_X, CONTINUE_BUTTON_Y});
+	object->callback = &play_button_function;
+	<font color="blue">return</font> (object);
+}</code ></pre>
+				<p>Now that we got a <a href="game_object.html">game_object_t *</a>button, we create the callback function play_button_function(). In this exemple, we will cast the void pointer to a scene_t pointer to switch scene.</p>
+				<pre><code><font color="red">void</font> play_button_function(<font color="red">game_object_t *</font>object, <font color="red">void *</font>pt)
+{
+	<font color="red">scene_t *</font>scene = (<font color="red">scene_t *</font>)pt;
+
+	scene->display = GALAXIE_SCENE;
+}</code ></pre>
+				<p>So to conclude, when the user will click on the <a href="game_object.html">game_object_t *</a>button, the scene->display will be set to GALAXIE_SCENE, which means we switched the displaying scene of the game.</p>
+				<h4>Argument of a callback function.</h4>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>object</td>
+								<td>the <a href="game_object.html">game_object_t *</a> which we clicked on.</td>
+								<td><font color="red">game_object_t *</td></font>
+							</tr>
+							<tr>
+								<td>pt</td>
+								<td>A void pointer to make the callback function as generic as possible.</td>
+								<td><font color="red">void *</td></font>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; 2020 Space_My_RPG. Epitech project. Website made by thomas.marches@epitech.eu. </a>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>
